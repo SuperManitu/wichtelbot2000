@@ -1,26 +1,16 @@
 <!DOCTYPE html>
 <head>
-    <title>Weihnachswichteln 2016</title>
+    <title>WichtelBot 2000</title>
     <meta charset="utf8" />
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <div id="input-names">
-        <div class="block">
-            <label for="name">Name:</label>
-            <input type="text" id="name"></input>
-        </div>
-
-        <div class="block">
-            <label for="geschenknummer">Geschenknummer:</label>
-            <input type="text" id="geschenknummer"></input>
-        </div>
-
-        <button type="button" onclick="addUser()">Speichern</button>
-    </div>
-    <div id="results">
-        <button type="button" onclick="generateResult()">Ergebnisse zeigen</button>
-    </div>
-
+    <div class="label">Name</div>
+    <div><input type="text" id="name" placeholder="Anette Lurch"></input> </div>
+    <div class="label">Geschenk-Nummer</div>  
+    <div><input type="text" id="geschenknummer" placeholder="3"></input></div>
+    <div class="action"><button type="button" onclick="addUser()">Speichern</button></div>
+    <div class="action"><button type="button" onclick="generateResult()">Ergebnisse zeigen</button></div>
     <script src="script.js"></script>
 </body>
                 
