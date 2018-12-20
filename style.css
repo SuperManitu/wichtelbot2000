@@ -2,9 +2,10 @@
 {
     margin: 0px;
     padding: 0px;
+    padding-top: 0.4em;
     font-family: "Arial Black", sans-serif;
-    font-size: 26px;
     color: #3E537C;
+    font-size: 1.5em;
     box-sizing: border-box;
 }
 
@@ -25,10 +26,33 @@ div, input, button
     text-align: center;
 }
 
+input {
+    border: 5px solid grey;
+}
+
+.label + div + .action {
+    margin-top: 0.5em;
+}
+
 div.label
 {
     font-weight: bold;
-    font-size: 30px;
+    font-size: 1.4em;
+}
+
+div.preview-line {
+    display: inline-block;
+    width: 100%;
+}
+
+div.preview-line + div.preview-line {
+    border-top: 3px solid grey;
+}
+
+div.preview-line button {
+    margin-left: 0.5em;
+    width: auto;
+    height: auto;
 }
 
 table, td, tr, th
@@ -43,10 +67,14 @@ th
 {
     border-bottom: 2px solid #233047;
     background-color: #C6D2E9;
-    font-size: 30px;
+    font-size: 0.7em;
+}
+
+td {
+    font-size: 1em;
 }
 
 td, th
 {
-    padding: 5px;
+    padding: 0.2em;
 }

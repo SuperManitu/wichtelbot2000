@@ -1,7 +1,16 @@
 var users = [];
 var presents = [];
 
-function addUser() 
+var removeButton = '<button type="button" onclick="deleteLastUser()">x</button>';
+
+function mkPreview(name) {
+    return '<div class="preview-line">'
+            + '<span class="name">' + name + '</span>'
+            + removeButton
+        + '</div>';
+}
+
+function addUser()
 {
     var name = document.getElementById('name').value;
     var present = document.getElementById('geschenknummer').value;
@@ -9,12 +18,32 @@ function addUser()
     presents.push(present);
     document.getElementById('name').value = '';
     document.getElementById('geschenknummer').value = '';
-    console.log(users, presents);
+
+    var preview = document.getElementById('preview');
+    if(preview.firstChild) {
+        preview.firstChild.removeChild(preview.firstChild.lastChild);
+    }
+    preview.insertAdjacentHTML('afterbegin', mkPreview(name));
 }
 
-function generateResult() 
+function deleteLastUser() {
+    users.pop()
+    presents.pop();
+
+    var preview = document.getElementById('preview');
+    preview.removeChild(preview.firstChild);
+    if(preview.firstChild) {
+        preview.firstChild.insertAdjacentHTML('beforeend', removeButton);
+    }
+}
+
+function generateResult()
 {
-    var userCopy = users.map(function(u) { return u; })
+    if(users.length !== new Set(users).size) {
+        alert('Jemand hat verkackt und ne falsche nummer eingeben, lade neu');
+        window.location.reload();
+    }
+    var userCopy = users.slice(0);
     var mapping = users.map(function(u) {
         var randomNumber = Math.floor(Math.random() * userCopy.length);
         var newUser = userCopy[randomNumber];
@@ -38,11 +67,11 @@ function generateResult()
         for (var attrname in curr) { tmp[attrname] = curr[attrname]; }
         return tmp;
     });
-    
+
     displayResult(dict);
 }
 
-function displayResult(dict) 
+function displayResult(dict)
 {
     while(document.body.firstChild)  document.body.removeChild(document.body.firstChild);
 
@@ -52,7 +81,7 @@ function displayResult(dict)
             + "<th>Bekommt</th>"
         + "</tr>";
 
-    for(var name in dict) 
+    for(var name in dict)
     {
         htmlString +=
             "<tr>"
@@ -64,9 +93,3 @@ function displayResult(dict)
     htmlString += "</table></div><div class='action'><button type='button' onclick='location.reload()'>Nochmal</button></div>";
     document.body.insertAdjacentHTML("beforeend", htmlString);
 }
-
-/*
-var users = [ "Jan", "Phips", "Chris", "Lurch", "Fisch" ];
-var presents = [ 2, 4, 1, 5, 3 ];
-generateResult();
-*/
